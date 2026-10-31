@@ -1,0 +1,219 @@
+{
+  "Русское радио": {
+    "artist": "Русское радио",
+    "title": "105,7",
+    "url": "https://rusradio.hostingradio.ru/rusradio128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/RusRadio_Logo.jpg",
+    "intent": "radio.play"
+  },
+  "DFM": {
+    "artist": "DFM",
+    "title": "101,2",
+    "url": "https://dfm.hostingradio.ru/dfm96.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/1054d9b274c050b15f205ff1d71add92.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Орфей": {
+    "artist": "Радио Орфей",
+    "title": "99,2",
+    "url": "https://orfeyfm.hostingradio.ru:8034/orfeyfm192.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/6a4cac0dd8b2c0ffb811d6071a8bdda3.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Романтика": {
+    "artist": "Радио Романтика",
+    "title": "98,8",
+    "url": "https://gpm.hostingradio.ru/gpm-romantika495.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/ebca71454d367d3006e9858f4ddd17ce.jpg",
+    "intent": "radio.play"
+  },
+  "Новое Радио": {
+    "artist": "Новое Радио",
+    "title": "98,4",
+    "url": "https://stream.newradio.ru/novoe96.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/006e5e4f3ea345d730f61d044258c600.jpg",
+    "intent": "radio.play"
+  },
+  "Детское Радио": {
+    "artist": "Детское Радио",
+    "title": "96,8",
+    "url": "https://gpm.hostingradio.ru/gpm-detifm495.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/49287129c13335919dc8d4d394fcd46d.jpg",
+    "intent": "radio.play"
+  },
+  "Говорит Москва": {
+    "artist": "Говорит Москва",
+    "title": "94,8",
+    "url": "http://media.govoritmoskva.ru:8880/rufm.mp3",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/384390df369d04f6892e42d59b349b6d.jpg",
+    "intent": "radio.play"
+  },
+  "Релакс ФМ": {
+    "artist": "Релакс ФМ",
+    "title": "90,8",
+    "url": "https://gpm.hostingradio.ru/gpm-relaxfm495.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/RadioRelax.png",
+    "intent": "radio.play"
+  },
+  "Авторадио": {
+    "artist": "Авторадио",
+    "title": "90,3",
+    "url": "https://gpm.hostingradio.ru/gpm-avtoradio495.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/685aa880274de01299ca92fb0e776306.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Джаз": {
+    "artist": "Радио Джаз",
+    "title": "89,1",
+    "url": "https://nashe1.hostingradio.ru/jazz-128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/c81cfaf3324871fe1fc55d0d87fb49df.jpg",
+    "intent": "radio.play"
+  },
+  "Юмор ФМ": {
+    "artist": "Юмор ФМ",
+    "title": "88,7",
+    "url": "https://gpm.hostingradio.ru/gpm-humorfm495.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/Humor_logo.jpg",
+    "intent": "radio.play"
+  },
+  "Милицейская волна": {
+    "artist": "Милицейская волна",
+    "title": "107,8",
+    "url": "http://radiomv.hostingradio.ru/radiomv128.mp3",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/e48d21b78476cf97513e2f2e16054f6a.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Энерджи": {
+    "artist": "Радио Энерджи",
+    "title": "104,2",
+    "url": "https://hls-01-gpm.hostingradio.ru/energyfm7/playlist.m3u8?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/NRG-logo.png",
+    "intent": "radio.play"
+  },
+  "Радио Шансон": {
+    "artist": "Радио Шансон",
+    "title": "103,0",
+    "url": "https://chanson.hostingradio.ru:8041/chanson256.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/544e8f45b5f067f699efaa98b51cd1e7.jpg",
+    "intent": "radio.play"
+  },
+  "Камеди Радио": {
+    "artist": "Камеди Радио",
+    "title": "102,5",
+    "url": "https://gpm.hostingradio.ru/gpm-comedyradio495.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/comedy_nino.png",
+    "intent": "radio.play"
+  },
+  "Наше Радио": {
+    "artist": "Наше Радио",
+    "title": "101,7",
+    "url": "https://nashe1.hostingradio.ru/nashe-128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/b507048579938a1782df4b8cec5842c8.jpg",
+    "intent": "radio.play"
+  },
+  "Серебряный Дождь": {
+    "artist": "Серебряный Дождь",
+    "title": "100,1",
+    "url": "https://silverrain.hostingradio.ru/silver128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/84d4e9f12511cf160d38a7a23f6352d4.jpg",
+    "intent": "radio.play"
+  },
+  "Коммерсантъ ФМ": {
+    "artist": "Коммерсантъ ФМ",
+    "title": "93,6",
+    "url": "http://kommersant77.hostingradio.ru:8016/kommersant128.mp3?radiostatistica=utm-mail-ru",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/274c391c5ceb0318f5d4a2b2bf70a23d.jpg",
+    "intent": "radio.play"
+  },
+  "Радио семь на семи холмах": {
+    "artist": "Радио семь на семи холмах",
+    "title": "104,7",
+    "url": "https://radio7.hostingradio.ru:8040/radio7128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/c71b849f0e255b635eb5d23a6aec443b.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Комсомольская правда": {
+    "artist": "Радио Комсомольская правда",
+    "title": "97,2",
+    "url": "https://kpradio.hostingradio.ru:8000/russia.radiokp64.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/5b456c6c-9c0d4bfc9d91f6e63e12d372.png",
+    "intent": "radio.play"
+  },
+  "Радио Максимум": {
+    "artist": "Радио Максимум",
+    "title": "103,7",
+    "url": "https://maximum.hostingradio.ru/maximum96.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/16149b45b5c4591c500d5361180a72e4.jpg",
+    "intent": "radio.play"
+  },
+  "Рок ФМ": {
+    "artist": "Рок ФМ",
+    "title": "95,2",
+    "url": "https://nashe1.hostingradio.ru/rock-128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/85f7f09a6bb21eaec8e6c2c3d0253770.jpg",
+    "intent": "radio.play"
+  },
+  "Лайк ФМ": {
+    "artist": "Лайк ФМ",
+    "title": "87,9",
+    "url": "https://hls-01-gpm.hostingradio.ru/likefm7/playlist.m3u8?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/fa5a3c8827455fb71d9aff51def3cca7.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Монте-Карло": {
+    "artist": "Радио Монте-Карло",
+    "title": "102,1",
+    "url": "https://montecarlo.hostingradio.ru/montecarlo96.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/2643e23ef8bd389ac4e75cd25e2beeaf.jpg",
+    "intent": "radio.play"
+  },
+  "Хит ФМ": {
+    "artist": "Хит ФМ",
+    "title": "107,4",
+    "url": "https://hitfm.hostingradio.ru/hitfm96.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/006e5e4f3ea345d730f61d044258c630.jpg",
+    "intent": "radio.play"
+  },
+  "Радио Рекорд": {
+    "artist": "Радио Рекорд",
+    "title": "106,3",
+    "url": "https://radiorecord.hostingradio.ru/rr_main96.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/r_record.png",
+    "intent": "radio.play"
+  },
+  "Studio 21": {
+    "artist": "Studio 21",
+    "title": "93,2",
+    "url": "https://stream.studio21.ru/studio2196.aacp?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/r_studio-21.png",
+    "intent": "radio.play"
+  },
+  "Эльдорадио": {
+    "artist": "Эльдорадио",
+    "title": "",
+    "url": "https://emgspb.hostingradio.ru/eldoradio128.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/r_eldo-radio.png",
+    "intent": "radio.play"
+  },
+  "Радио Калина Красная": {
+    "artist": "Радио Калина Красная",
+    "title": "",
+    "url": "https://hls.kalina.fm/kalina/playlist.m3u8?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/r_kalina-krasnaya.png",
+    "intent": "radio.play"
+  },
+  "Балтик Плюс": {
+    "artist": "Балтик Плюс",
+    "title": "",
+    "url": "http://195.135.213.128:8000/Baltic_Plus_aac_256.aac",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/r_baltic-plus.png",
+    "intent": "radio.play"
+  },
+  "Казак ФМ": {
+    "artist": "Казак ФМ",
+    "title": "",
+    "url": "https://radio.kazak.fm/kazak_fm.mp3?radiostatistica=VKMarusya",
+    "coverUrl": "https://resources-vc.go.mail.ru/voice/skillserver_resources/prod/radio_logo/r_kazak-fm.png",
+    "intent": "radio.play"
+  }
+}

@@ -1,0 +1,57 @@
+name: marusia-cloud
+
+x-sec: &sec
+  security_opt:
+    - apparmor:unconfined
+    - seccomp:unconfined
+
+services:
+  certgen:
+    image: alpine:3.20
+    restart: "no"
+    volumes:
+      - tls:/tls
+      - ./scripts/gen-certs.sh:/gen-certs.sh:ro
+      - ./secrets:/ca-in:ro
+    command: ["sh", "/gen-certs.sh", "/tls", "/ca-in"]
+
+  emulator:
+    build:
+      context: .
+      dockerfile: Dockerfile.emulator
+    restart: unless-stopped
+    expose: ["8080"]
+    <<: *sec
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      certgen:
+        condition: service_completed_successfully
+      emulator:
+        condition: service_started
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - tls:/etc/nginx/tls:ro
+    <<: *sec
+
+  dns:
+    image: alpine:3.20
+    restart: unless-stopped
+    environment:
+      MARUSIA_DNS_TARGET: ${MARUSIA_DNS_TARGET:-127.0.0.1}
+      MARUSIA_DNS_UPSTREAM: ${MARUSIA_DNS_UPSTREAM:-1.1.1.1}
+    volumes:
+      - ./scripts/dns-entrypoint.sh:/dns-entrypoint.sh:ro
+    command: ["sh", "/dns-entrypoint.sh"]
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    <<: *sec
+
+volumes:
+  tls:

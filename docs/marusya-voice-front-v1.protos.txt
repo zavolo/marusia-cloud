@@ -1,0 +1,1465 @@
+=== выкорчёвано proto-файлов: 12
+
+########## vk/voice/grpc/front/v1/api/client_probe/auth_ready.proto  (package vk.voice.grpc.front.v1.api.client_probe) ##########
+name: "vk/voice/grpc/front/v1/api/client_probe/auth_ready.proto"
+package: "vk.voice.grpc.front.v1.api.client_probe"
+message_type {
+  name: "AuthReadyRequest"
+}
+message_type {
+  name: "AuthReadyResponse"
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/api/client_probe;clientprobepb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/api/phrase/result.proto  (package vk.voice.grpc.front.v1.api.phrase) ##########
+name: "vk/voice/grpc/front/v1/api/phrase/result.proto"
+package: "vk.voice.grpc.front.v1.api.phrase"
+message_type {
+  name: "GetResultRequest"
+}
+message_type {
+  name: "GetResultResponse"
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/api/phrase;phrasepb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/api/phrase/speech.proto  (package vk.voice.grpc.front.v1.api.phrase) ##########
+name: "vk/voice/grpc/front/v1/api/phrase/speech.proto"
+package: "vk.voice.grpc.front.v1.api.phrase"
+dependency: "google/protobuf/wrappers.proto"
+dependency: "vk/voice/grpc/front/v1/model/options/request.proto"
+dependency: "vk/voice/grpc/front/v1/model/phrase_commands/commands.proto"
+message_type {
+  name: "SpeechRequestQoSOptions"
+  field {
+    name: "status_interval_ms"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+}
+message_type {
+  name: "SpeechRequestFlowmodeOptions"
+  field {
+    name: "model"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "no_input_timeout_ms"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "speech_complete_timeout_ms"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "dictation_max_duration_ms"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "event_on_finish"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "punctuator_model_kind"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "SpeechRequestOptions"
+  field {
+    name: "speech_start_timeout_ms"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "use_asrld_recognize"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.BoolValue"
+  }
+}
+message_type {
+  name: "SpeechRequestInit"
+  field {
+    name: "audio_options"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestAudioOptions"
+  }
+  field {
+    name: "qos_options"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestQoSOptions"
+  }
+  field {
+    name: "client_options"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestClientOptions"
+  }
+  field {
+    name: "mode"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestInit.SpeechMode"
+  }
+  field {
+    name: "flowmode_options"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestFlowmodeOptions"
+  }
+  field {
+    name: "keyword_options"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestKeywordOptions"
+  }
+  field {
+    name: "infra_options"
+    number: 7
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestInfraOptions"
+  }
+  field {
+    name: "mail_options"
+    number: 8
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestMailOptions"
+  }
+  field {
+    name: "dialog_options"
+    number: 9
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestDialogOptions"
+  }
+  field {
+    name: "telephony_options"
+    number: 10
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestTelephonyOptions"
+  }
+  field {
+    name: "speech_options"
+    number: 11
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestOptions"
+  }
+  enum_type {
+    name: "SpeechMode"
+    value {
+      name: "SPEECH_MODE_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "SPEECH_MODE_GENERAL"
+      number: 1
+    }
+    value {
+      name: "SPEECH_MODE_FLOWMODE"
+      number: 2
+    }
+  }
+}
+message_type {
+  name: "SpeechRequestRecovery"
+  field {
+    name: "phrase_id"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "SpeechRequestChunk"
+  field {
+    name: "chunk_num"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "data"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+}
+message_type {
+  name: "SpeechRequestEos"
+}
+message_type {
+  name: "SpeechRequestAbort"
+  field {
+    name: "reason"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "SpeechResponseQoSOptions"
+  field {
+    name: "chunk_length_ms_hint"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "status_interval_ms"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "chunks_overflow_acceptable"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_BOOL
+  }
+}
+message_type {
+  name: "SpeechResponseInit"
+  field {
+    name: "phrase_id"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "qos"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseQoSOptions"
+  }
+}
+message_type {
+  name: "SpeechResponseStatus"
+  field {
+    name: "chunks_received"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "audio_received_ms"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "last_chunk_received_ts_ms"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_INT64
+  }
+  field {
+    name: "status_num"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+}
+message_type {
+  name: "SpeechResponseEos"
+}
+message_type {
+  name: "SpeechResponseKeywordConfirmed"
+}
+message_type {
+  name: "SpeechResponseTextSoFar"
+  field {
+    name: "text"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "SpeechResponseFinish"
+  field {
+    name: "abort"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseFinish.ContinuationAbort"
+    oneof_index: 0
+  }
+  field {
+    name: "noop"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseFinish.ContinuationNoop"
+    oneof_index: 0
+  }
+  field {
+    name: "result"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseFinish.ContinuationResult"
+    oneof_index: 0
+  }
+  nested_type {
+    name: "ContinuationNoop"
+  }
+  nested_type {
+    name: "ContinuationAbort"
+    field {
+      name: "reason"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+    }
+  }
+  nested_type {
+    name: "ContinuationResult"
+  }
+  oneof_decl {
+    name: "continuation"
+  }
+}
+message_type {
+  name: "SpeechResponseCommands"
+  field {
+    name: "bundles"
+    number: 1
+    label: LABEL_REPEATED
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.phrase_commands.CommandsBundle"
+  }
+}
+message_type {
+  name: "SpeechRequest"
+  field {
+    name: "init"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestInit"
+    oneof_index: 0
+  }
+  field {
+    name: "recovery"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestRecovery"
+    oneof_index: 0
+  }
+  field {
+    name: "chunk"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestChunk"
+    oneof_index: 0
+  }
+  field {
+    name: "eos"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestEos"
+    oneof_index: 0
+  }
+  field {
+    name: "abort"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechRequestAbort"
+    oneof_index: 0
+  }
+  oneof_decl {
+    name: "kind"
+  }
+}
+message_type {
+  name: "SpeechResponse"
+  field {
+    name: "init"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseInit"
+    oneof_index: 0
+  }
+  field {
+    name: "eos"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseEos"
+    oneof_index: 0
+  }
+  field {
+    name: "status"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseStatus"
+    oneof_index: 0
+  }
+  field {
+    name: "keyword_confirmed"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseKeywordConfirmed"
+    oneof_index: 0
+  }
+  field {
+    name: "text_so_far"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseTextSoFar"
+    oneof_index: 0
+  }
+  field {
+    name: "commands"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseCommands"
+    oneof_index: 0
+  }
+  field {
+    name: "finish"
+    number: 7
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.api.phrase.SpeechResponseFinish"
+    oneof_index: 0
+  }
+  field {
+    name: "send_ts_ms"
+    number: 8
+    label: LABEL_OPTIONAL
+    type: TYPE_INT64
+  }
+  oneof_decl {
+    name: "kind"
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/api/phrase;phrasepb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/capabilities.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/capabilities.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+message_type {
+  name: "ClientCapabilities"
+  field {
+    name: "json"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/client_data.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/client_data.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+message_type {
+  name: "ClientData"
+  field {
+    name: "json"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/device.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/device.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+message_type {
+  name: "DeviceInfo"
+  field {
+    name: "serial"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "version"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "brand"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/geo.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/geo.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+dependency: "google/protobuf/wrappers.proto"
+message_type {
+  name: "Coords"
+  field {
+    name: "longitude"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.DoubleValue"
+  }
+  field {
+    name: "latitude"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.DoubleValue"
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/media_state.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/media_state.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+enum_type {
+  name: "MediaState"
+  value {
+    name: "MEDIA_STATE_UNSPECIFIED"
+    number: 0
+  }
+  value {
+    name: "MEDIA_STATE_STOP"
+    number: 1
+  }
+  value {
+    name: "MEDIA_STATE_PLAY"
+    number: 2
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/player_data.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/player_data.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+dependency: "google/protobuf/wrappers.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/media_state.proto"
+message_type {
+  name: "PlayerTrackMeta"
+  field {
+    name: "artist"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "album"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "title"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "genre"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "duration"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.DoubleValue"
+  }
+}
+message_type {
+  name: "PlayerSkillMeta"
+  field {
+    name: "album_uid"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "audio_hash"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "cpp_hash"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "media_type"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "name"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "phrase_id"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "skill_name"
+    number: 7
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "stat_flags"
+    number: 8
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+  field {
+    name: "type"
+    number: 9
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "uid"
+    number: 10
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "url"
+    number: 11
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "position"
+    number: 12
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.Int32Value"
+  }
+}
+message_type {
+  name: "PlayerRunnerPhrasePlaylist"
+  field {
+    name: "skill_meta"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerSkillMeta"
+  }
+}
+message_type {
+  name: "PlayerRunnerBluetooth"
+}
+message_type {
+  name: "PlayerRunnerSpotify"
+}
+message_type {
+  name: "PlayerSeekableTrackState"
+  field {
+    name: "elapsed"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_DOUBLE
+  }
+  field {
+    name: "duration"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.DoubleValue"
+  }
+}
+message_type {
+  name: "PlayerPlaybackInfo"
+  field {
+    name: "media_state"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.model.client.MediaState"
+  }
+  field {
+    name: "track_meta"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerTrackMeta"
+  }
+  field {
+    name: "seekable_track_state"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerSeekableTrackState"
+  }
+  field {
+    name: "playback_duration"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_DOUBLE
+  }
+  field {
+    name: "phrase_playlist"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerRunnerPhrasePlaylist"
+    oneof_index: 0
+  }
+  field {
+    name: "bluetooth"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerRunnerBluetooth"
+    oneof_index: 0
+  }
+  field {
+    name: "spotify"
+    number: 7
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerRunnerSpotify"
+    oneof_index: 0
+  }
+  oneof_decl {
+    name: "runner"
+  }
+}
+message_type {
+  name: "PlayerData"
+  field {
+    name: "volume"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.Int32Value"
+  }
+  field {
+    name: "playback_info"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerPlaybackInfo"
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/client/state.proto  (package vk.voice.grpc.front.v1.model.client) ##########
+name: "vk/voice/grpc/front/v1/model/client/state.proto"
+package: "vk.voice.grpc.front.v1.model.client"
+message_type {
+  name: "ClientState"
+  field {
+    name: "state"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlatformSpecific"
+  }
+}
+message_type {
+  name: "Notification"
+  field {
+    name: "json"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+}
+message_type {
+  name: "PlatformSpecific"
+  field {
+    name: "android_state"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlatformSpecific.Android"
+    oneof_index: 0
+  }
+  field {
+    name: "ios_state"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlatformSpecific.IOS"
+    oneof_index: 0
+  }
+  field {
+    name: "capsula_state"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlatformSpecific.Capsula"
+    oneof_index: 0
+  }
+  field {
+    name: "embedded_android_state"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlatformSpecific.EmbeddedAndroid"
+    oneof_index: 0
+  }
+  nested_type {
+    name: "Android"
+    field {
+      name: "default_assistant"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+    }
+    field {
+      name: "default_browser_package"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+    }
+    field {
+      name: "flashlight"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".vk.voice.grpc.front.v1.model.client.Flashlight"
+    }
+    field {
+      name: "permissions"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".vk.voice.grpc.front.v1.model.client.Permissions"
+    }
+  }
+  nested_type {
+    name: "IOS"
+    field {
+      name: "whatsapp"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+    }
+    field {
+      name: "permissions"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".vk.voice.grpc.front.v1.model.client.Permissions"
+    }
+  }
+  nested_type {
+    name: "Capsula"
+    field {
+      name: "clock_brightness"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+    }
+    field {
+      name: "demo_mode"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+    }
+    field {
+      name: "has_unread_vk_messages"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+    }
+    field {
+      name: "mic_on"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+    }
+    field {
+      name: "stereo_connected"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+    }
+    field {
+      name: "volume"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_FLOAT
+    }
+    field {
+      name: "phrase_executing"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".vk.voice.grpc.front.v1.model.client.PhraseExecuting"
+    }
+    field {
+      name: "notifications"
+      number: 9
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".vk.voice.grpc.front.v1.model.client.Notification"
+    }
+    reserved_range {
+      start: 8
+      end: 9
+    }
+  }
+  nested_type {
+    name: "EmbeddedAndroid"
+    nested_type {
+      name: "Watch"
+    }
+    nested_type {
+      name: "CarAudio"
+    }
+    nested_type {
+      name: "Television"
+    }
+  }
+  oneof_decl {
+    name: "platform_state"
+  }
+}
+message_type {
+  name: "Permissions"
+  field {
+    name: "call_phone"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.model.client.PermissionStatus"
+  }
+  field {
+    name: "address_book"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.model.client.PermissionStatus"
+  }
+  field {
+    name: "location"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.model.client.PermissionStatus"
+  }
+}
+message_type {
+  name: "Flashlight"
+  field {
+    name: "supported"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_BOOL
+  }
+}
+message_type {
+  name: "PhraseExecuting"
+  field {
+    name: "phrase_id"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "current_command_type"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.model.client.PhraseExecuting.CommandType"
+  }
+  field {
+    name: "commands_executed"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "commands_left"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  enum_type {
+    name: "CommandType"
+    value {
+      name: "COMMAND_TYPE_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "COMMAND_TYPE_TTS"
+      number: 1
+    }
+  }
+  reserved_range {
+    start: 2
+    end: 3
+  }
+}
+enum_type {
+  name: "PermissionStatus"
+  value {
+    name: "PERMISSION_STATUS_UNSPECIFIED"
+    number: 0
+  }
+  value {
+    name: "PERMISSION_STATUS_GRANTED"
+    number: 1
+  }
+  value {
+    name: "PERMISSION_STATUS_DENIED"
+    number: 2
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/client;clientpb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/options/request.proto  (package vk.voice.grpc.front.v1.model.options) ##########
+name: "vk/voice/grpc/front/v1/model/options/request.proto"
+package: "vk.voice.grpc.front.v1.model.options"
+dependency: "google/protobuf/wrappers.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/capabilities.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/client_data.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/device.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/geo.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/media_state.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/player_data.proto"
+dependency: "vk/voice/grpc/front/v1/model/client/state.proto"
+message_type {
+  name: "RequestClientOptions"
+  field {
+    name: "capabilities"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.ClientCapabilities"
+  }
+  field {
+    name: "state"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.ClientState"
+  }
+  field {
+    name: "callback_data"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+  field {
+    name: "timezone"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "client_data"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.ClientData"
+  }
+  field {
+    name: "player_data"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.PlayerData"
+  }
+  field {
+    name: "coordinates"
+    number: 7
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.Coords"
+  }
+  field {
+    name: "activation_type"
+    number: 8
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "idfa"
+    number: 9
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "advertising_id"
+    number: 10
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "safe_modes"
+    number: 11
+    label: LABEL_OPTIONAL
+    type: TYPE_INT32
+  }
+  field {
+    name: "device_info"
+    number: 12
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.client.DeviceInfo"
+  }
+  field {
+    name: "refuse_tts"
+    number: 13
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.BoolValue"
+  }
+}
+message_type {
+  name: "RequestDialogOptions"
+  field {
+    name: "dialog_mode"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "chat_id"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "RequestInfraOptions"
+  field {
+    name: "skillserver_type"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "reset_state"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.BoolValue"
+  }
+}
+message_type {
+  name: "RequestMailOptions"
+  field {
+    name: "use_bound_mail"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.BoolValue"
+  }
+  field {
+    name: "selected_mail_id"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "selected_mail_token"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "RequestTelephonyOptions"
+  field {
+    name: "secret_request"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.BoolValue"
+  }
+  field {
+    name: "secret_response"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.BoolValue"
+  }
+}
+message_type {
+  name: "RequestAudioOptions"
+  field {
+    name: "format"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_ENUM
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestAudioOptions.AudioFormat"
+  }
+  enum_type {
+    name: "AudioFormat"
+    value {
+      name: "AUDIO_FORMAT_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "AUDIO_FORMAT_WAVE"
+      number: 1
+    }
+    value {
+      name: "AUDIO_FORMAT_OGG_OPUS"
+      number: 2
+    }
+  }
+}
+message_type {
+  name: "RequestKeywordOptions"
+  field {
+    name: "kws_context"
+    number: 3
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+  field {
+    name: "no_kw"
+    number: 4
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestKeywordOptions.NoKeyword"
+    oneof_index: 0
+  }
+  field {
+    name: "strict_kw"
+    number: 5
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestKeywordOptions.StrictKeyword"
+    oneof_index: 0
+  }
+  field {
+    name: "kw_params"
+    number: 6
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".vk.voice.grpc.front.v1.model.options.RequestKeywordOptions.KeywordParams"
+    oneof_index: 0
+  }
+  nested_type {
+    name: "NoKeyword"
+  }
+  nested_type {
+    name: "StrictKeyword"
+    field {
+      name: "keyword"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+    }
+  }
+  nested_type {
+    name: "KeywordParams"
+    field {
+      name: "keyword"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+    }
+    field {
+      name: "hw_id"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+    }
+    field {
+      name: "media_state"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".vk.voice.grpc.front.v1.model.client.MediaState"
+    }
+    field {
+      name: "model_ver"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+    }
+  }
+  oneof_decl {
+    name: "kw_variant"
+  }
+  reserved_range {
+    start: 1
+    end: 2
+  }
+  reserved_range {
+    start: 2
+    end: 3
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/options;optionspb"
+}
+syntax: "proto3"
+
+
+########## vk/voice/grpc/front/v1/model/phrase_commands/commands.proto  (package vk.voice.grpc.front.v1.model.phrase_commands) ##########
+name: "vk/voice/grpc/front/v1/model/phrase_commands/commands.proto"
+package: "vk.voice.grpc.front.v1.model.phrase_commands"
+dependency: "google/protobuf/any.proto"
+message_type {
+  name: "CommandPlayUrlsPreload"
+  field {
+    name: "urls"
+    number: 1
+    label: LABEL_REPEATED
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "CommandBgMusicPreload"
+  field {
+    name: "urls"
+    number: 1
+    label: LABEL_REPEATED
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "CommandPlayUrl"
+  field {
+    name: "url"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "CommandBgMusic"
+  field {
+    name: "url"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "CommandShowText"
+  field {
+    name: "text"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+}
+message_type {
+  name: "CommandSendEvent"
+  field {
+    name: "event"
+    number: 1
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+  }
+  field {
+    name: "callback_data"
+    number: 2
+    label: LABEL_OPTIONAL
+    type: TYPE_BYTES
+  }
+}
+message_type {
+  name: "CommandsBundle"
+  field {
+    name: "commands"
+    number: 1
+    label: LABEL_REPEATED
+    type: TYPE_MESSAGE
+    type_name: ".google.protobuf.Any"
+  }
+}
+options {
+  go_package: "pkg/protogen/vk/voice/grpc/front/v1/model/phrase_commands;phrase_commandspb"
+}
+syntax: "proto3"
+

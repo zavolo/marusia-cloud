@@ -1,0 +1,24 @@
+# секреты и окружение
+deploy/.env
+.env
+*.key
+*.crt
+*.pem
+ca/
+certs/
+tls/
+secrets/*
+!secrets/.gitkeep
+emulator/cert.pem
+emulator/key.pem
+
+# большие данные / модели / кэши
+vosk-model/
+rvc-models/
+rvc-cache/
+mirror/
+reference/marusya-spotter/model.bin
+**/__pycache__/
+*.pyc
+emulator/emu.log
+emulator/data/recordings/

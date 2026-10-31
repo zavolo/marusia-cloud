@@ -1,0 +1,188 @@
+# Продакшен-стек marusia-mitm (одна VM, микросервисы).
+#   postgres + redis         — durable-состояние и кэш/очередь
+#   migrate                  — alembic upgrade head (разовый, перед gateway)
+#   gateway                  — эмулятор vc.go.mail.ru (aiohttp), HTTP+WS
+#   asr / tts                — CPU-воркеры (Vosk / Silero+RVC), отдельные процессы
+#   prometheus + grafana     — метрики
+# TLS-терминация — внешним reverse-proxy; gateway слушает 127.0.0.1:48080.
+# Для быстрого старта с TLS+DNS из коробки см. корневой docker-compose.yml.
+# Запуск:  cd deploy && docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+name: marusia
+
+x-python-sec: &python-sec
+  security_opt: [apparmor:unconfined, seccomp:unconfined]  # docker-default AppArmor режет socketpair(AF_UNIX)
+  init: true                                               # PID1-reaper: SIGTERM доходит, graceful shutdown
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: marusia
+      POSTGRES_USER: marusia
+      POSTGRES_PASSWORD: ${PG_PASSWORD:?set PG_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marusia -d marusia"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    mem_limit: 512m
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    mem_limit: 256m
+
+  migrate:
+    image: marusia-gateway:local       # образ собирает gateway; здесь только миграции
+    environment:
+      MARUSIA_DATABASE_URL: postgresql+asyncpg://marusia:${PG_PASSWORD}@postgres:5432/marusia
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    restart: "no"
+    <<: *python-sec
+
+  gateway:
+    image: marusia-gateway:local
+    build:                             # ЕДИНСТВЕННое место сборки образа gateway/migrate
+      context: ..
+      dockerfile: Dockerfile.emulator
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      migrate: {condition: service_completed_successfully}
+    environment:
+      MARUSIA_DATABASE_URL: postgresql+asyncpg://marusia:${PG_PASSWORD}@postgres:5432/marusia
+      MARUSIA_REDIS_URL: redis://redis:6379/0
+      MARUSIA_ASR_URL: http://asr:8082/asr
+      MARUSIA_RVC_URL: http://tts:8081/tts
+      MARUSIA_RVC_VOICE: ${MARUSIA_RVC_VOICE:-valakas}
+      MARUSIA_LOG_JSON: "1"
+      MARUSIA_TTS_BLOBS: /data/tts
+      # безопасность (как у VK: session TTL ~1ч с автопродлением; rate-limit свой)
+      MARUSIA_SESSION_TTL: ${MARUSIA_SESSION_TTL:-3600}
+      MARUSIA_RATE_LIMIT: ${MARUSIA_RATE_LIMIT:-120}
+      MARUSIA_RATE_WINDOW: ${MARUSIA_RATE_WINDOW:-60}
+      MARUSIA_ADMIN_TOKEN: ${MARUSIA_ADMIN_TOKEN:?set MARUSIA_ADMIN_TOKEN in .env}
+      # mirror-CAPABILITY опциональна (задать upstream в .env), само зеркало
+      # по умолчанию OFF — рулится в рантайме флагом в Redis через /admin/mirror
+      MARUSIA_MIRROR_UPSTREAM: ${MARUSIA_MIRROR_UPSTREAM:-}
+      MARUSIA_MIRROR_SNI: ${MARUSIA_MIRROR_SNI:-vc.go.mail.ru}
+      MARUSIA_MIRROR_LOG: /data/mirror/all.jsonl
+    volumes:
+      - ../static:/app/static:ro
+      - ttsblobs:/data/tts
+      - mirrorlog:/data/mirror
+    ports:
+      - "127.0.0.1:48080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    mem_limit: 512m
+    <<: *python-sec
+
+  cleanup:
+    image: marusia-gateway:local       # тот же образ, другая команда (retention-демон)
+    environment:
+      MARUSIA_DATABASE_URL: postgresql+asyncpg://marusia:${PG_PASSWORD}@postgres:5432/marusia
+      MARUSIA_TTS_BLOBS: /data/tts
+      MARUSIA_EVENTLOG_RETENTION_DAYS: ${MARUSIA_EVENTLOG_RETENTION_DAYS:-14}
+      MARUSIA_TTSCACHE_MAX_BYTES: ${MARUSIA_TTSCACHE_MAX_BYTES:-536870912}
+      MARUSIA_RETENTION_INTERVAL: ${MARUSIA_RETENTION_INTERVAL:-86400}
+    command: ["python", "-m", "emu.maintenance.retention", "--loop"]
+    volumes:
+      - ttsblobs:/data/tts             # нужен доступ к блобам для вытеснения LRU
+    depends_on:
+      postgres: {condition: service_healthy}
+      migrate: {condition: service_completed_successfully}
+    restart: unless-stopped
+    mem_limit: 256m
+    <<: *python-sec
+
+  asr:
+    image: marusia-asr:local
+    build:
+      context: ../asr-service
+      dockerfile: Dockerfile
+    environment:
+      MARUSIA_VOSK_MODEL: /app/vosk-model
+    volumes:
+      - ../vosk-model:/app/vosk-model:ro
+    healthcheck:
+      # в asr-образе нет curl — проверяем питоном (python в образе есть)
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8082/healthz').status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    mem_limit: 1g
+    <<: *python-sec
+
+  tts:
+    image: marusia-tts:local
+    build:
+      context: ../rvc-service
+      dockerfile: Dockerfile
+    environment:
+      MARUSIA_RVC_MODELS: /models
+      MARUSIA_RVC_DEFAULT: ${MARUSIA_RVC_VOICE:-valakas}
+      MARUSIA_SILERO_SPEAKER: ${MARUSIA_SILERO_SPEAKER:-eugene}
+    volumes:
+      - ../rvc-models:/models:ro
+      - rvccache:/root/.cache
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8081/healthz || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    restart: unless-stopped
+    mem_limit: 2g
+    <<: *python-sec
+
+  prometheus:
+    image: prom/prometheus:v3.0.1
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - promdata:/prometheus
+    restart: unless-stopped
+    mem_limit: 256m
+
+  grafana:
+    image: grafana/grafana:11.4.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:?set GRAFANA_PASSWORD in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - grafanadata:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on: [prometheus]
+    restart: unless-stopped
+    mem_limit: 256m
+
+volumes:
+  pgdata: {}
+  redisdata: {}
+  ttsblobs: {}
+  mirrorlog: {}
+  rvccache: {}
+  promdata: {}
+  grafanadata: {}

@@ -1,0 +1,14 @@
+# gateway (эмулятор vc.go.mail.ru) — прод-зависимости
+aiohttp==3.10.11
+msgpack==1.1.0
+vosk==0.3.45                 # fallback-ASR при выключенном asr-worker (MARUSIA_ASR_URL пуст)
+
+# durable-слой
+SQLAlchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.0
+redis==5.2.1
+
+# наблюдаемость
+structlog==24.4.0
+prometheus-client==0.21.1

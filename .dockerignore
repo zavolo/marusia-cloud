@@ -1,0 +1,15 @@
+ca/
+certs/leaf.ext
+**/__pycache__
+**/*.pyc
+emulator/emu.log
+emulator/cert.pem
+emulator/key.pem
+# большие данные — монтируются volume'ами, в образ gateway не нужны
+vosk-model/
+rvc-models/
+rvc-cache/
+mirror/
+deploy/
+.git/
+.env
